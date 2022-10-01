@@ -11,3 +11,7 @@ This is a bug in protobuf@21. I used [this recipe](https://github.com/protocolbu
 # Building GRPC Server and Client 
 ## IDE does not recognize the import commands and types
 I created `main.go` using `touch main.go`, preventing the IDE from knowing that `main.go` was a `GO` file!
+
+# Building webapp
+## npm ERR! cb.apply is not a function
+I used this [SO Recipe](https://stackoverflow.com/questions/53657920/i-cant-install-react-using-npx-create-react-app)

@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "add": "^2.0.6",
+    "google-protobuf": "^3.21.0",
+    "grpc-web": "^1.4.1"
+  },
+  "resolutions": {
+    "graceful-fs": "4.2.4"
+  },
+  "devDependencies": {
+    "create-react-app": "^5.0.1"
+  }
+}
