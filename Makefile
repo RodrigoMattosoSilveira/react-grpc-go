@@ -1,5 +1,6 @@
 CERT=./cert
-CERTGEN=certgen.zsh
+#CERTGEN=certgen.zsh
+CERTGEN=gencert.zsh
 PINGPONG=./pingpong
 UISRC=./ui/src
 SERVER_DIR=server
@@ -38,3 +39,7 @@ server:
 .PHONY: client
 client:
 	go build -o $(CLIENT_DIR)/main $(CLIENT_DIR)/*.go
+
+## Build both
+.PHONY: cltsrvr
+cltsrvr: client server

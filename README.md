@@ -15,3 +15,11 @@ I created `main.go` using `touch main.go`, preventing the IDE from knowing that 
 # Building webapp
 ## npm ERR! cb.apply is not a function
 I used this [SO Recipe](https://stackoverflow.com/questions/53657920/i-cant-install-react-using-npx-create-react-app)
+
+## This site can’t be reached, localhost refused to connect.
+### For Chrome
+Used the instructions in the [SO Answer](https://stackoverflow.com/questions/7580508/getting-chrome-to-accept-self-signed-localhost-certificate)
+### For Opera
+### For Firefox
+### mkcert
+[mkcert](https://github.com/FiloSottile/mkcert) is a simple tool for making locally-trusted development certificates. It requires no configuration. Did not use it, but it has promise
