@@ -73,7 +73,7 @@ func main() {
 
 	// Serve the webapp over TLS
 	log.Printf("Starting server on localhost:8080")
-	log.Fatal(srv.ListenAndServeTLS(constants.CertDir+"server.crt", constants.CertDir+"server.key"))
+	log.Fatal(srv.ListenAndServeTLS(constants.CertDir+"server-cert.pem", constants.CertDir+"server-key.pem"))
 
 }
 
