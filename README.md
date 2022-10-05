@@ -17,6 +17,8 @@ I created `main.go` using `touch main.go`, preventing the IDE from knowing that 
 I used this [SO Recipe](https://stackoverflow.com/questions/53657920/i-cant-install-react-using-npx-create-react-app)
 
 ## This site can’t be reached, localhost refused to connect.
+### Rewrote the certificate generation
+See [How to create & sign SSL/TLS certificates](https://dev.to/techschoolguru/how-to-create-sign-ssl-tls-certificates-2aai) for an excellent discussion;
 ### For Chrome
 Used the instructions in the [SO Answer](https://stackoverflow.com/questions/7580508/getting-chrome-to-accept-self-signed-localhost-certificate)
 ### For Opera
