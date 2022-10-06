@@ -22,6 +22,8 @@ See [How to create & sign SSL/TLS certificates](https://dev.to/techschoolguru/ho
 ### For Chrome
 Used the instructions in the [SO Answer](https://stackoverflow.com/questions/7580508/getting-chrome-to-accept-self-signed-localhost-certificate)
 ### For Opera
+I cannot figure out how to make it work!
 ### For Firefox
+I can accept the error and continue.
 ### mkcert
 [mkcert](https://github.com/FiloSottile/mkcert) is a simple tool for making locally-trusted development certificates. It requires no configuration. Did not use it, but it has promise

@@ -1,16 +1,25 @@
-CERT=./cert
+CERT_DIR=./cert
 #CERTGEN=certgen.zsh
 CERTGEN=gencert.zsh
 PINGPONG=./pingpong
 UISRC=./ui/src
-SERVER_DIR=server
-CLIENT_DIR=client
+SERVER_DIR=./server
+CLIENT_DIR=./client
 export PATH := $(HOME)/.local/bin:$(PATH)
 
-## Install certificates
-.PHONY: cert
-cert:
-	$(CERT)/$(CERTGEN)
+all: $(CERT_DIR)/server-cert.pem $(CLIENT_DIR)/main $(SERVER_DIR)/main
+
+# Install certificates
+$(CERT_DIR)/server-cert.pem : $(CERT_DIR)/$(CERTGEN) $(CERT_DIR)/server-ext.cnf
+	$(CERT_DIR)/$(CERTGEN)
+
+# Build Client
+$(CLIENT_DIR)/main : $(CLIENT_DIR)/main.go
+	go build -o $(CLIENT_DIR)/main $(CLIENT_DIR)/*.go
+
+# Build Server
+$(SERVER_DIR)/main : $(SERVER_DIR)/main.go $(SERVER_DIR)/server.go
+	go build -o $(SERVER_DIR)/main $(SERVER_DIR)/*.go
 
 ## Generate gRPC Web files
 .PHONY: protoweb
@@ -29,17 +38,3 @@ protoserver:
 	--go-grpc_out=require_unimplemented_servers=false:$(PINGPONG)/ \
 	--go-grpc_opt=paths=source_relative \
 	$(PINGPONG)/service.proto
-
-## Build Server
-.PHONY:server
-server:
-	go build -o $(SERVER_DIR)/main $(SERVER_DIR)/*.go
-
-## Build Client
-.PHONY: client
-client:
-	go build -o $(CLIENT_DIR)/main $(CLIENT_DIR)/*.go
-
-## Build both
-.PHONY: cltsrvr
-cltsrvr: client server
