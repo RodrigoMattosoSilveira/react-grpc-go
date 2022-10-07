@@ -15,3 +15,5 @@
 # vendor/
 *.pem
 ca-cert.srl
+pingpong_grpc_web_pb.js
+pingpong_pb.js
