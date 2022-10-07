@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.4.1
 // 	protoc              v3.21.6
-// source: pingpong/service.proto
+// source: grpc/pingpong/pingpong.proto
 
 
 /* eslint-disable */
@@ -20,7 +20,7 @@ const grpc = {};
 grpc.web = require('grpc-web');
 
 const proto = {};
-proto.main = require('./service_pb.js');
+proto.main = require('./pingpong_pb.js');
 
 /**
  * @param {string} hostname

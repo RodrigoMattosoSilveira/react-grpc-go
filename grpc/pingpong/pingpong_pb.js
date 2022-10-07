@@ -1,4 +1,4 @@
-// source: pingpong/service.proto
+// source: grpc/pingpong/pingpong.proto
 /**
  * @fileoverview
  * @enhanceable

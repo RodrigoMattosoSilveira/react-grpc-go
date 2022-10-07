@@ -4,13 +4,12 @@ import (
 	"context"
 	"crypto/tls"
 	"crypto/x509"
-	"io/ioutil"
-	"log"
-
 	"github.com/RodrigoMattosoSilveira/react-grpc-go/constants"
-	"github.com/RodrigoMattosoSilveira/react-grpc-go/pingpong"
+	"github.com/RodrigoMattosoSilveira/react-grpc-go/grpc/pingpong"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
+	"io/ioutil"
+	"log"
 )
 
 func main() {

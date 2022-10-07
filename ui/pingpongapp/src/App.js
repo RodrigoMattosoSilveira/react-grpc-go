@@ -1,7 +1,7 @@
 import './App.css';
 import React, {useState, useEffect } from 'react';
-import { PingPongClient } from './proto/service_grpc_web_pb';
-import { PingRequest } from './proto/service_pb';
+import { PingPongClient } from '../../../grpc/pingpong/pingpong_grpc_web_pb';
+import { PingRequest } from '../../../grpc/pingpong/pingpong_pb';
 
 // We create a client that connects to the api
 var client = new PingPongClient("https://localhost:8080");

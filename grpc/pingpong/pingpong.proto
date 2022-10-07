@@ -9,6 +9,9 @@ message PongResponse {
     bool ok = 1;
 }
 
+/*
+    Force a build
+ */
 service PingPong{
     rpc Ping(PingRequest) returns (PongResponse) {};
 }

@@ -1,40 +1,34 @@
 CERT_DIR=./cert
 #CERTGEN=certgen.zsh
 CERTGEN=gencert.zsh
-PINGPONG=./pingpong
-UISRC=./ui/src
 SERVER_DIR=./server
 CLIENT_DIR=./client
+
+## Generate gRPC Web files
+GRPC=./grpc
+GRPC_PINGPONG=$(GRPC)/pingpong
+GRPC_PINGPONG_PROTO=$(GRPC_PINGPONG)/pingpong.proto
+GRPC_PINGPONG_PB_GO=$(GRPC_PINGPONG)/pingpong.pb.go
+
 export PATH := $(HOME)/.local/bin:$(PATH)
 
-all: $(CERT_DIR)/server-cert.pem $(CLIENT_DIR)/main $(SERVER_DIR)/main
+all: $(CERT_DIR)/server-cert.pem $(GRPC_PINGPONG_PB_GO) $(CLIENT_DIR)/main $(SERVER_DIR)/main
 
 # Install certificates
 $(CERT_DIR)/server-cert.pem : $(CERT_DIR)/$(CERTGEN) $(CERT_DIR)/server-ext.cnf
 	$(CERT_DIR)/$(CERTGEN)
 
 # Build Client
-$(CLIENT_DIR)/main : $(CLIENT_DIR)/main.go
+$(CLIENT_DIR)/main : $(CLIENT_DIR)/main.go  $(GRPC_PINGPONG_PROTO)
 	go build -o $(CLIENT_DIR)/main $(CLIENT_DIR)/*.go
 
 # Build Server
-$(SERVER_DIR)/main : $(SERVER_DIR)/main.go $(SERVER_DIR)/server.go
+$(SERVER_DIR)/main : $(SERVER_DIR)/main.go $(SERVER_DIR)/server.go $(GRPC_PINGPONG_PROTO)
 	go build -o $(SERVER_DIR)/main $(SERVER_DIR)/*.go
+$(GRPC_PINGPONG_PB_GO): $(GRPC_PINGPONG_PROTO)
+	protoc --js\_out=import\_style=commonjs,binary:./ \
+	--grpc-web\_out=import\_style=commonjs,mode=grpcwebtext:./ \
+	--go-grpc\_out=$(GRPC_PINGPONG)/ \
+	--go\_out=$(GRPC_PINGPONG)/ \
+	 $(GRPC_PINGPONG_PROTO)
 
-## Generate gRPC Web files
-.PHONY: protoweb
-protoweb:
-	protoc --js\_out=import\_style=commonjs,binary:$(UISRC)/ \
-	--grpc-web\_out=import\_style=commonjs,mode=grpcwebtext:$(UISRC)/ \
-	--go-grpc\_out=$(PINGPONG)/ \
-	--go\_out=$(PINGPONG)/ \
-	 $(PINGPONG)/service.proto
-
-## Generate gRPC Server files
-.PHONY: protoserver
-protoserver:
-	protoc --go_out. \
-	--go_opt=paths=source_relative \
-	--go-grpc_out=require_unimplemented_servers=false:$(PINGPONG)/ \
-	--go-grpc_opt=paths=source_relative \
-	$(PINGPONG)/service.proto

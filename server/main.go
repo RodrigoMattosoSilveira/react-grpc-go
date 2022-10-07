@@ -1,16 +1,15 @@
 package main
 
 import (
+	"github.com/RodrigoMattosoSilveira/react-grpc-go/constants"
+	"github.com/RodrigoMattosoSilveira/react-grpc-go/grpc/pingpong"
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 	"log"
 	"net"
 	"net/http"
 	"time"
-
-	"github.com/RodrigoMattosoSilveira/react-grpc-go/constants"
-	"github.com/RodrigoMattosoSilveira/react-grpc-go/pingpong"
-	"github.com/improbable-eng/grpc-web/go/grpcweb"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials"
 )
 
 func main() {

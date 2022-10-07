@@ -2,19 +2,19 @@ package main
 
 import (
 	"context"
-	"github.com/RodrigoMattosoSilveira/react-grpc-go/pingpong"
+	pingpong2 "github.com/RodrigoMattosoSilveira/react-grpc-go/grpc/pingpong"
 )
 
 // Server is the Logic handler for the server
 // It has to fulfill the GRPC schema generated Interface
 // In this case its only 1 function called Ping
 type Server struct {
-	pingpong.UnimplementedPingPongServer
+	pingpong2.UnimplementedPingPongServer
 }
 
 // Ping fullfills the requirement for PingPong Server interface
-func (s *Server) Ping(ctx context.Context, ping *pingpong.PingRequest) (*pingpong.PongResponse, error) {
-	return &pingpong.PongResponse{
+func (s *Server) Ping(ctx context.Context, ping *pingpong2.PingRequest) (*pingpong2.PongResponse, error) {
+	return &pingpong2.PongResponse{
 		Ok: true,
 	}, nil
 }
